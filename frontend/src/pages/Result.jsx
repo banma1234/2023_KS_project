@@ -7,7 +7,7 @@ export default function Result() {
         programming: "",
     });
 
-    useEffect(async () => {
+    const fetchData = async () => {
         let response = await fetch("/api/data", {
             method: "GET"
         });
@@ -15,15 +15,20 @@ export default function Result() {
         let data = await response.json();
         setData({
             name: data.Name,
-            date: data.date,
+            date: data.Date,
             programming: data.programming,
         });
+    }
+
+    useEffect(() => {
+        fetchData();
     }, []);
 
     return(
         <>
             <h1>Result</h1>
-            <br/><hr/>
+            <h1>Result</h1>
+            <h1>Result</h1>
             <ul>
                 <li>name : {data.name}</li>
                 <li>date : {data.date}</li>
