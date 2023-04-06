@@ -1,11 +1,13 @@
-import Home from './Home';
-import Result from './Result';
+import Home from "./Home";
+import Result from "./Result";
+import About from "./About";
 
 const Pages = {
-    Home,
-    Result,
-}
+  Home,
+  Result,
+  About,
+};
 
 export default Pages;
 
-export { Home, Result, };
+export { Home, Result, About };
