@@ -1,11 +1,12 @@
-import React from "react";
+import React, {useState} from "react";
 import Modal from "../components/modal/modal";
-import ModalHandler from "../components/modal/modalHandler";
+import useModal from '../utils/hooks/useModal/useModal';
 
 export default function About() {
-  const { openModal } = ModalHandler();
+  const [image, setImage] = useState([]);
+  const { openModal } = useModal();
   const handleClick = () => {
-    openModal(ModalPage, null);
+    openModal({ type: "single" });
   };
 
   return (
@@ -14,19 +15,8 @@ export default function About() {
       <h1>About</h1>
       <h1>About</h1>
       <button onClick={handleClick}>Click me!</button>
+      <input type="file" accept="image/*"/>
       <Modal />
     </>
   );
 }
-
-const ModalPage = ({ isOpen, onCancel }) => {
-  return (
-    <div isOpen={isOpen}>
-      <h1>모달창</h1>
-      <hr />
-      <div>
-        <button onClick={onCancel}>확인</button>
-      </div>
-    </div>
-  );
-};

@@ -1,20 +1,35 @@
-import { useContext } from "react";
-import { ModalStateContext, ModalDispatchContext } from "../../utils/store";
+import React, { useContext } from "react";
+import { createPortal } from "react-dom";
+import { ModalStateContext } from '../../utils/store'
+import SampleModal from "./SampleModal";
+import SecondModal from "./SecondModal";
+import { Container, Overlay } from "./modalStyle";
+import useModal from '../../utils/hooks/useModal/useModal';
 
-const Modal = () => {
-  const openModal = useContext(ModalStateContext);
-  const { closeModal } = useContext(ModalDispatchContext);
-
-  return openModal.map((modal, index) => {
-    const { Component, props } = modal;
-    const { onSubmit, ...restProps } = props;
-
-    const onClose = () => {
-      closeModal(Component);
-    };
-
-    return <div key={index} onClose={onClose} {...restProps} />;
-  });
+const MODAL_COMPONENTS = {
+  single: SampleModal,
+  dual: SecondModal,
 };
 
-export default Modal;
+function ModalContainer() {
+  const { type, props } = useContext(ModalStateContext);
+  const { closeModal } = useModal();
+
+  if (!type) {
+    return null;
+  }
+
+  const Modal = MODAL_COMPONENTS[type];
+  return createPortal(
+    <>
+      <Overlay>
+        <Container>
+          <Modal {...props} onClose={closeModal} />
+        </Container>
+      </Overlay>
+    </>,
+    document.getElementById("modal"),
+  );
+}
+
+export default ModalContainer;

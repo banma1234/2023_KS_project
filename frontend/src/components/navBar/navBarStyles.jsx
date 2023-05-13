@@ -7,7 +7,7 @@ export const Container = styled.div`
   background-color: #7f4dd1;
   display: flex;
   position: fixed;
-  z-index: 9999;
+  z-index: 9900;
 `;
 
 export const MenuContainer = styled.div`

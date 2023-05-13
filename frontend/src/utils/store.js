@@ -1,31 +1,19 @@
 import { React, createContext, useState } from "react";
 
-export const ModalStateContext = createContext([]);
-export const ModalDispatchContext = createContext({
-  open: () => {},
-  close: () => {},
-});
+export const ModalStateContext = createContext();
+export const ModalSetterContext = createContext();
 
-export const Store = ({ children }) => {
-  const [openModals, setOpenModals] = useState([]);
-  const modalOpen = (Component, props) => {
-    setOpenModals(modals => {
-      return [...modals, { Component, props }];
+export function Store({ children }) {
+  const [state, setState] = useState({
+      type: null,
+      props: null,
     });
-  };
-  const modalClose = Component => {
-    setOpenModals(modals => {
-      return modals.filter(modal => modal.Component !== Component);
-    });
-  };
-
-  const dispatch = { modalOpen, modalClose };
 
   return (
-    <ModalDispatchContext.Provider value={dispatch}>
-      <ModalStateContext.Provider value={openModals}>
+    <ModalSetterContext.Provider value={setState}>
+      <ModalStateContext.Provider value={state}>
         {children}
       </ModalStateContext.Provider>
-    </ModalDispatchContext.Provider>
+    </ModalSetterContext.Provider>
   );
-};
+}

@@ -1,14 +1,17 @@
 import Layout from "./components/layout";
 import Router from "./router/router.js";
+import { Store } from './utils/store';
 
 function App() {
   return (
     <>
-      <Layout>
-        <div className="App">
-          <Router />
-        </div>
-      </Layout>
+      <Store>
+        <Layout>
+          <div className="App">
+            <Router />
+          </div>
+        </Layout>
+      </Store>
     </>
   );
 }
