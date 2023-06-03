@@ -13,18 +13,18 @@ export default function Home() {
 
   const postImageToServer = async () => {
     try {
-      const formData = new FormData();
+      let formData = new FormData();
       formData.append('image', image);
 
       let response = await fetch('/api/scanImage', {
         method: 'POST',
         body: formData,
       });
-      const data = await response.json();
+      let data = await response.json();
 
       if (data.success) {
         console.log("success");
-        navigate.push("/result", { data });
+        navigate("/result", { state: { result: data } });
       } else {
         console.log(data.message);
       }
