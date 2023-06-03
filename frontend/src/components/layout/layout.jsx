@@ -1,6 +1,5 @@
-import { Container, Section, Article, Aside } from "./layoutStyle";
+import { Container, Section, Article } from "./layoutStyle";
 import NavBar from "../navBar/navBar";
-import Footer from "../footer/Footer";
 
 const LayoutComponent = props => {
   return (
@@ -10,20 +9,11 @@ const LayoutComponent = props => {
       </header>
       <main>
         <Container>
-          <nav>
-            <Aside />
-          </nav>
           <article>
             <Article>{props.children}</Article>
           </article>
-          <section>
-            <Aside />
-          </section>
         </Container>
       </main>
-      <footer>
-        <Footer />
-      </footer>
     </Section>
   );
 };
