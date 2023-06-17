@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { createPortal } from "react-dom";
-import { ModalStateContext } from '../../utils/store'
+import { ModalStateContext } from "../../utils/store";
 import SampleModal from "./SampleModal";
 import SecondModal from "./SecondModal";
 import { Container, Overlay } from "./modalStyle";
-import useModal from '../../utils/hooks/useModal/useModal';
+import useModal from "../../utils/hooks/useModal/useModal";
 
 const MODAL_COMPONENTS = {
-  single: SampleModal,
+  loading: SampleModal,
   dual: SecondModal,
 };
 
