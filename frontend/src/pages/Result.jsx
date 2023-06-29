@@ -1,39 +1,21 @@
-import { React, useState, useEffect } from 'react';
+import React from "react";
+import Box from "../components/box/box";
+import { useLocation } from "react-router-dom";
 
 export default function Result() {
-    const [data, setData] = useState({
-        name: "",
-        date: "",
-        programming: "",
-    });
+  const location = useLocation();
+  const { state } = location;
+  let result = state && state.result; // state가 정의되어 있을 때만 result 변수에 할당
+  result = JSON.parse(result.message);
 
-    const fetchData = async () => {
-        let response = await fetch("/api/data", {
-            method: "GET"
-        });
-
-        let data = await response.json();
-        setData({
-            name: data.Name,
-            date: data.Date,
-            programming: data.programming,
-        });
-    }
-
-    useEffect(() => {
-        fetchData();
-    }, []);
-
-    return(
-        <>
-            <h1>Result</h1>
-            <h1>Result</h1>
-            <h1>Result</h1>
-            <ul>
-                <li>name : {data.name}</li>
-                <li>date : {data.date}</li>
-                <li>programming : {data.programming}</li>
-            </ul>
-        </>
-    );
-};
+  return (
+    <>
+      <h1>Result</h1>
+      <h1>Result</h1>
+      <h1>Result</h1>
+      <Box type="default" color="purple">
+        <p>{result ? result.message.result.translatedText : "no result"}</p>
+      </Box>
+    </>
+  );
+}
