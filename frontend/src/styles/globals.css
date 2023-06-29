@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+  font-family: "nanumGothic";
+  font-size: 18px;
+  color: #262626;
+  background-color: #f7f6fb;
+  @font-face {
+    font-family: "nanumGothic";
+    src: url("/public/fonts/NanumBarunGothicBold.ttf") format("truetype");
+  }
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+a {
+  text-decoration: none;
+  color: #f7f6fb;
+}
+
+li {
+  list-style: none;
+}
